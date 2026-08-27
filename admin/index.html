@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Dashboard</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="dashboard">
+
+    <header class="dashboard-header">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p>Apology responses</p>
+      </div>
+
+      <a href="index.html" class="back-button">
+        Back
+      </a>
+    </header>
+
+
+    <section class="stats">
+
+      <div class="stat-card">
+        <span>Total</span>
+        <strong id="totalResponses">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Forgive</span>
+        <strong id="forgiveResponses">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Not Forgive</span>
+        <strong id="notForgiveResponses">0</strong>
+      </div>
+
+    </section>
+
+
+    <section class="responses-section">
+
+      <h2>Responses</h2>
+
+      <div id="responsesContainer">
+        <p>Loading responses...</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="admin.js"></script>
+
+</body>
+</html>
