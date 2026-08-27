@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #fff7fa;
+  --card: #ffffff;
+  --primary: #e98ba8;
+  --primary-dark: #d96f91;
+  --text: #3f3036;
+  --muted: #806c74;
+  --border: #f3dce4;
+  --soft-pink: #fff0f5;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(
+      circle at top left,
+      #ffe4ed 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #ffeaf1 0%,
+      transparent 35%
+    ),
+    var(--background);
+}
+
+.card {
+  width: 100%;
+  max-width: 620px;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 45px 35px;
+  border-radius: 28px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(170, 100, 125, 0.12);
+  border: 1px solid var(--border);
+  animation: appear 0.7s ease;
+}
+
+.emoji {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.small-text {
+  color: var(--primary-dark);
+  font-size: 15px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 38px;
+  line-height: 1.2;
+  margin-bottom: 22px;
+  color: var(--text);
+}
+
+.description {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.message {
+  text-align: left;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.message p {
+  margin-bottom: 18px;
+}
+
+.button {
+  display: inline-block;
+  width: 100%;
+  padding: 16px 22px;
+  border: none;
+  border-radius: 14px;
+  background: var(--primary);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.secondary-button {
+  background: var(--soft-pink);
+  color: var(--primary-dark);
+  border: 1px solid var(--border);
+}
+
+.secondary-button:hover {
+  background: #ffe2eb;
+}
+
+.choice-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 17px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  outline: none;
+  font-size: 16px;
+  color: var(--text);
+  background: #fffafb;
+}
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(233, 139, 168, 0.12);
+}
+
+.signature {
+  color: var(--primary-dark);
+  font-weight: 600;
+  margin-top: 25px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .page {
+    padding: 15px;
+  }
+
+  .card {
+    padding: 35px 22px;
+    border-radius: 22px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .message {
+    font-size: 15px;
+  }
+}
