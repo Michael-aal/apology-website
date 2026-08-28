@@ -64,3 +64,44 @@ export const getResponses = async (req, res) => {
     });
   }
 };
+
+export const deleteResponse = async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid response ID"
+      });
+    }
+
+    const existingResponse = await prisma.response.findUnique({
+      where: { id }
+    });
+
+    if (!existingResponse) {
+      return res.status(404).json({
+        success: false,
+        message: "Response not found"
+      });
+    }
+
+    await prisma.response.delete({
+      where: { id }
+    });
+
+    res.json({
+      success: true,
+      message: "Response deleted successfully"
+    });
+
+  } catch (error) {
+    console.error("Delete response error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete response"
+    });
+  }
+};

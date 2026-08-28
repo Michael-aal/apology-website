@@ -45,6 +45,54 @@ function displayStats(responses) {
   document.getElementById("forgiveResponses").textContent = forgive;
   document.getElementById("notForgiveResponses").textContent = notForgive;
 }
+function displayResponses(responses) {
+  const container =
+    document.getElementById("responsesContainer");
+
+  if (!container) return;
+
+  if (responses.length === 0) {
+    container.innerHTML = "<p>No responses yet.</p>";
+    return;
+  }
+
+  container.innerHTML = responses
+    .map((response, index) => {
+
+      const answer =
+        response.answer === "forgive"
+          ? "Forgive 🤍"
+          : "Needs time 🌷";
+
+      const date =
+        new Date(response.createdAt).toLocaleString();
+
+      return `
+        <div class="response-item">
+
+          <strong>#${index + 1}</strong>
+
+          <span>
+            <b>${response.name || "Unknown"}</b>
+          </span>
+
+          <span>${answer}</span>
+
+          <small>${date}</small>
+
+          <button
+            class="delete-btn"
+            onclick="deleteResponse(${response.id})"
+          >
+            Delete
+          </button>
+
+        </div>
+      `;
+    })
+    .join("");
+}
+
 
 function displayResponses(responses) {
   const container =
@@ -59,19 +107,35 @@ function displayResponses(responses) {
 
   container.innerHTML = responses
     .map((response, index) => {
+
       const answer =
         response.answer === "forgive"
           ? "Forgive 🤍"
-          : "Not Forgive 🌷";
+          : "Needs time 🌷";
 
       const date =
         new Date(response.createdAt).toLocaleString();
 
       return `
         <div class="response-item">
+
           <strong>#${index + 1}</strong>
+
+          <span>
+            <b>${response.name || "Unknown"}</b>
+          </span>
+
           <span>${answer}</span>
+
           <small>${date}</small>
+
+          <button
+            class="delete-btn"
+            onclick="deleteResponse(${response.id})"
+          >
+            Delete
+          </button>
+
         </div>
       `;
     })
