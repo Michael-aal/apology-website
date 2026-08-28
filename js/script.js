@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       localStorage.setItem("apologyName", name);
 
-      window.location.href = "Apology.html";
+      window.location.href = "apology.html";
     });
 
   }
