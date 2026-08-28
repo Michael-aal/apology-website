@@ -4,12 +4,12 @@ const prisma = new PrismaClient();
 
 export const createResponse = async (req, res) => {
   try {
-    const { answer } = req.body;
+    const { name, answer } = req.body;
 
-    if (!answer) {
+    if (!name || !answer) {
       return res.status(400).json({
         success: false,
-        message: "Answer is required"
+        message: "Name and answer are required"
       });
     }
 
@@ -22,6 +22,7 @@ export const createResponse = async (req, res) => {
 
     const response = await prisma.response.create({
       data: {
+        name,
         answer
       }
     });
@@ -30,8 +31,9 @@ export const createResponse = async (req, res) => {
       success: true,
       response
     });
+
   } catch (error) {
-    console.error(error);
+    console.error("Create response error:", error);
 
     res.status(500).json({
       success: false,
@@ -54,7 +56,7 @@ export const getResponses = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("Get responses error:", error);
 
     res.status(500).json({
       success: false,

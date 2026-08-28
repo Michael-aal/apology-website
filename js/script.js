@@ -76,52 +76,50 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+async function saveResponse(answer) {
 
-// Save her response
-async function saveResponse(response) {
+  const name = localStorage.getItem("apologyName");
 
-  // Save locally so the response page still works
-  localStorage.setItem("apologyResponse", response);
-
-  localStorage.setItem(
-    "responseTime",
-    new Date().toISOString()
-  );
-
-  // Convert the website response to the database value
-  const answer =
-    response === "Yes, I forgive you 🤍"
-      ? "forgive"
-      : "not_forgive";
+  if (!name) {
+    alert("Please enter your name first.");
+    window.location.href = "name.html";
+    return;
+  }
 
   try {
 
-    const apiResponse = await fetch(
-      "http://localhost:5000/api/responses",
+    const response = await fetch(
+      "https://https://apology-website-173f.onrender.com/api/responses",
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json"
         },
+
         body: JSON.stringify({
+          name: name,
           answer: answer
         })
       }
     );
 
-    const data = await apiResponse.json();
+    const data = await response.json();
 
-    console.log("Response saved:", data);
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to save response");
+    }
+
+    localStorage.setItem("apologyResponse", answer);
+
+    window.location.href = "response.html";
 
   } catch (error) {
 
-    console.error(
-      "Could not save response to database:",
-      error
+    console.error("Error:", error);
+
+    alert(
+      "Something went wrong. Please try again."
     );
-
   }
-
-  // Continue to your existing response page
-  window.location.href = "Response.html";
 }
