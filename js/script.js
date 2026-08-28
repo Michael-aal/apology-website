@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     savedResponse
   ) {
 
-    if (savedResponse === "Yes, I forgive you 🤍") {
+  if (savedResponse === "forgive") {
 
       responseEmoji.textContent = "🤍";
 
@@ -89,7 +89,7 @@ async function saveResponse(answer) {
   try {
 
     const response = await fetch(
-      "https://https://apology-website-173f.onrender.com/api/responses",
+      "https://apology-website-173f.onrender.com/api/responses",
       {
         method: "POST",
 
@@ -118,8 +118,6 @@ async function saveResponse(answer) {
 
     console.error("Error:", error);
 
-    alert(
-      "Something went wrong. Please try again."
-    );
+    alert("Something went wrong. Please try again.");
   }
 }
